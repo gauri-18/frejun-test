@@ -8,7 +8,7 @@ const PostDetail = ({ route, navigation }) => {
 
     return (
         <SafeAreaView style={styles?.post}>
-            <Text style={styles?.content}>{params?.content}</Text>
+            <Text style={styles?.content}>{params?.title}</Text>
             <Text style={styles?.commentSection}>Comments</Text>
             <CommentList postId={params?.id} navigate={navigation?.navigate} />
         </SafeAreaView>

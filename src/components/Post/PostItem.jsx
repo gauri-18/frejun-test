@@ -12,7 +12,7 @@ const PostItem = ({ navigate, post }) => {
 
     return (
         <View style={styles?.post}>
-            <Text style={styles?.content} onPress={() => handlePostClick(post)}>{post?.content}</Text>
+            <Text style={styles?.content} onPress={() => handlePostClick(post)}>{post?.title}</Text>
         </View>
     )
 };

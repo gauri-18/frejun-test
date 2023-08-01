@@ -4,7 +4,7 @@ import { View, StyleSheet, Text } from 'react-native';
 const CommentItem = ({ comment }) => {
     return (
         <View style={styles.comment}>
-            <Text style={styles?.content}>{`${comment?.id} - ${comment?.content}`}</Text>
+            <Text style={styles?.content}>{`${comment?.id} - ${comment?.name}`}</Text>
         </View>
     )
 };

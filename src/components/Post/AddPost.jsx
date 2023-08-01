@@ -10,7 +10,7 @@ const AddPost = (props) => {
     const { posts = [] } = useSelector(state => state.post);
 
     const handleAddNewPostAction = () => {
-        dispatch(setNewPost({ id: posts?.length + 1 || 1, content: newPostContent }));
+        dispatch(setNewPost({ id: posts?.length + 1 || 1, title: newPostContent }));
         props.navigation.navigate('Post List');
     };
 

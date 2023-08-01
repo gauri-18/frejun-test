@@ -10,7 +10,7 @@ const postReducer = (state = initialState, action) => {
         case SET_POST_DATA:
             return { ...state, posts: action.postData };
         case SET_NEW_POST:
-            return { ...state, posts: [...state.posts, action.newPost] }
+            return { ...state, posts: [action.newPost, ...state.posts] }
         case SET_COMMENT_DATA:
             return { ...state, comments: action.commentData };
         default:

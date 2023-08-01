@@ -10,17 +10,28 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import PostItem from './PostItem';
-import { postList } from '../../constants';
 import { setPostData } from '../../redux/actions/PostActions';
 
 const PostList = (props) => {
     const dispatch = useDispatch();
+    const { route = {} } = props;
     const { posts = [] } = useSelector(state => state.post);
 
+    const fetchPost = () => {
+        fetch('https://jsonplaceholder.typicode.com/posts')
+            .then(response => response.json())
+            .then(postsData => dispatch(setPostData(postsData)));
+    };
+
     useEffect(() => {
-        //We will call API to get post data and then set it into redux store
-        dispatch(setPostData(postList));
+        fetchPost();
     }, []);
+
+    useEffect(() => {
+        if (route?.params?.refreshPost) {
+            fetchPost();
+        }
+    }, [route?.params?.refreshPost]);
 
     const handleAddNewPostAction = () => {
         props.navigation.navigate('Add Post');

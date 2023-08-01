@@ -9,18 +9,16 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 import CommentItem from './CommentItem';
-import { commentList } from '../../constants';
 import { setCommentData } from '../../redux/actions/PostActions';
 
 const CommentList = ({ postId, navigate }) => {
     const dispatch = useDispatch();
     const { comments = [] } = useSelector(state => state.post);
-    const currentPostCommentsData = commentList.find(comment => comment.postId === postId) || {};
-    const currentPostComments = currentPostCommentsData?.comments || [];
 
     useEffect(() => {
-        //Need to call API to get comments data based on selected post and then set it into redux store.
-        dispatch(setCommentData(currentPostComments));
+        fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
+            .then(response => response.json())
+            .then(commentsData => dispatch(setCommentData(commentsData)));
     }, []);
 
     const handleAddNewCommentAction = () => {
